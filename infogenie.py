@@ -8,9 +8,9 @@ Original file is located at
 """
 
 #Pinecone Installation
-!pip install --upgrade --quiet pinecone-client pinecone-text pinecone-notebooks
+#!pip install --upgrade --quiet pinecone-client pinecone-text pinecone-notebooks
 
-!pip install langchain_community
+#!pip install langchain_community
 
 import streamlit as st
 import requests
