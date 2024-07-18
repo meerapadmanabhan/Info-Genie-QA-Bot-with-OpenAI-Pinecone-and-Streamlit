@@ -1,36 +1,32 @@
+# infogenie.py
+
 import streamlit as st
 import requests
 from bs4 import BeautifulSoup
 import openai
 import pinecone
 import numpy as np
-
 from langchain_community.retrievers import PineconeHybridSearchRetriever
 
-#Initialize Pinecone
-api_key="7f1a3949-c165-400d-9f11-6b2e1ae4a9c0"
+# Initialize Pinecone
+api_key = "7f1a3949-c165-400d-9f11-6b2e1ae4a9c0"
+index_name = "infogenie"
 
-import os
-from pinecone import Pinecone,ServerlessSpec
-index_name="infogenie"
+# Initialize Pinecone client
+pinecone.init(api_key=api_key)
 
-#initialize pinecone client
-pc=Pinecone(api_key=api_key)
+# Create index if it doesn't exist
+if index_name not in pinecone.list_indexes():
+    pinecone.create_index(
+        name=index_name,
+        dimension=384,  # Dimensionality of dense model
+        metric="dotproduct",
+        spec=pinecone.ServerlessSpec(cloud="aws", region="us-east-1")
+    )
 
-#create index
-if index_name not in pc.list_indexes().names():
-  pc.create_index(
-      name=index_name,
-      dimention=384, #dimentionality of dense model
-      metric="dotproduct",
-      spec=ServerlessSpec(cloud="aws",region="us-east-1")
+index = pinecone.Index(index_name)
 
-      )
-
-index=pc.Index(index_name)
-index
-
-openai.api_key = "sk-None-xwNqvKAZBN9x6HfllXT9T3BlbkFJfniQeZb7ezjy9ZO8Mn6U"
+openai.api_key = "sk-None-xwNqvKAZBN9x6HfllXT9T3BlbkFJfniQeZb7ezjy9ZO8Mn6U"  # Use environment variable or secret in production
 
 def fetch_website_content(url):
     response = requests.get(url)
@@ -88,4 +84,5 @@ if st.button("Get Answer"):
     with st.spinner("Fetching answer..."):
         answer = qa_bot(query)
         st.write("Answer:", answer)
+
 
