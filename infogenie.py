@@ -1,4 +1,5 @@
 # infogenie.py
+!pip install beautifulsoup
 
 import streamlit as st
 import requests
