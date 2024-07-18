@@ -11,6 +11,8 @@ Original file is located at
 #!pip install --upgrade --quiet pinecone-client pinecone-text pinecone-notebooks
 
 #!pip install langchain_community
+!pip install bs4
+
 
 import streamlit as st
 import requests
