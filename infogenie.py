@@ -27,7 +27,7 @@ if index_name not in pinecone.list_indexes():
 
 index = pinecone.Index(index_name)
 
-openai.api_key = "sk-None-xwNqvKAZBN9x6HfllXT9T3BlbkFJfniQeZb7ezjy9ZO8Mn6U"  # Use environment variable or secret in production
+openai.api_key = ""  # Use environment variable or secret in production
 
 def fetch_website_content(url):
     response = requests.get(url)
