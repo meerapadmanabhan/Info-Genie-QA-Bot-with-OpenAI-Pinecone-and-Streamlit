@@ -5,7 +5,7 @@ from sqlalchemy.exc import SQLAlchemyError
 import pymysql
 
 # Define the API key as a string
-api_key = "AIzaSyCur1YcA1FzlkH9I0SvxKYtCmDV0FJG0ak"
+api_key = "your_api_key"
 
 # Initialize the GoogleGenerativeAI LLM with the API key
 llm = GoogleGenerativeAI(model="models/text-bison-001", google_api_key=api_key, temperature=0.1)
@@ -18,7 +18,7 @@ llm = GoogleGenerativeAI(model="models/text-bison-001", google_api_key=api_key, 
 from langchain_community.utilities import SQLDatabase
 
 db_user = "root"
-db_password = "Asdfglkjh_123"
+db_password = "root"
 db_host = "localhost"
 db_name = "myntra"
 
